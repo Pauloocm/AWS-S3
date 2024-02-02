@@ -1,12 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Aws_s3.Platform.Application.User.Commands
+namespace Aws_s3.Platform.Domain.User
 {
-    public class AddUserCommand
+    public class User
     {
-        [Required]
+        [Key]
+        public Guid Id { get; set; }
+
         public string Name { get; set; }
-        [Required]
         public string Email { get; set; }
+
     }
 }

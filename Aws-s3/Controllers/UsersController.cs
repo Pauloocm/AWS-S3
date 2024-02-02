@@ -1,5 +1,5 @@
 ﻿using Aws_s3.Platform.Application;
-using Aws_s3.Platform.Application.User.Commands;
+using Aws_s3.Platform.Application.Users.Commands;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Aws_s3.Controllers
@@ -24,6 +24,12 @@ namespace Aws_s3.Controllers
             var userId = await userAppService.Add(command, cancellationToken);
 
             return Ok(userId);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> List(CancellationToken cancellationToken)
+        {
+            return Ok(await userAppService.List(cancellationToken));
         }
     }
 }
