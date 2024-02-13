@@ -12,14 +12,23 @@ namespace Aws_s3.Platform.Application
             userRepository = UserRepository;
         }
 
-        public Task<Guid> Add(AddUserCommand command, CancellationToken cancellationToken = default)
+        public async Task<Guid> Add(AddUserCommand command, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            if (command == null) throw new ArgumentNullException(nameof(command));
+
+            var user = new User(command.Name, command.Email);
+
+            if (user == null)
+                throw new ArgumentNullException($"{user} is null");
+
+            await userRepository.Add(user, cancellationToken);
+
+            return user.Id;
         }
 
-        public Task<List<User>> List(CancellationToken cancellationToken = default)
+        public async Task<List<User>> List(CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return await userRepository.List(cancellationToken);
         }
     }
 }

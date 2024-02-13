@@ -10,6 +10,11 @@ namespace Aws_s3.Platform.Infrastructure.Database
             optionsBuilder.UseInMemoryDatabase(databaseName: "UsersDb");
         }
 
+        public DataContext()
+        {
+            
+        }
+
         public DbSet<User> Users { get; set; }
     }
 }
